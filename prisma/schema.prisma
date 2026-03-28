@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Lead {
+  id        String      @id @default(cuid())
+  email     String      @unique
+  secuencia Int         @default(1)
+  estado    String      @default("nuevo") // nuevo, activo, terminado
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  diagnoses Diagnosis[]
+}
+
+model Diagnosis {
+  id        String   @id @default(cuid())
+  email     String
+  profile   String
+  answer1   String
+  answer2   String
+  answer3   String
+  answer4   String
+  answer5   String
+  secuencia Int      @default(1)
+  estado    String   @default("nuevo")
+  emailSent Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  lead   Lead?   @relation(fields: [leadId], references: [id])
+  leadId String?
+
+  @@index([email])
+}
