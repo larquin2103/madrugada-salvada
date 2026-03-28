@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { findLead, createLead, updateLead, createDiagnosis } from '@/lib/db-simple';
 
 // Webhook de Make para capturar emails
-const MAKE_WEBHOOK_URL = 'https://hook.us2.make.com/xa7yey5g6x36fogt5mwzkwxdq9ia01ne';
+const MAKE_WEBHOOK_URL = 'https://hook.us2.make.com/985ntpds93gro0p1q95w46puft2ln2eu';
 const SALES_PAGE_URL = 'https://vuelveadormir.space.z.ai';
 
 // Profile data
